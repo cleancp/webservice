@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
+         xmlns:soap="http://cxf.apache.org/bindings/soap"
+           xmlns:context="http://www.springframework.org/schema/context" 
+             xsi:schemaLocation=" http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+               http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+                 http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+                 http://cxf.apache.org/jaxrs
+                 http://cxf.apache.org/schemas/jaxrs.xsd">
+
+  <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>  
+  <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
+
+<jaxrs:server id="stuRestService" address="/stuservices">
+   <jaxrs:serviceBeans>    
+       <ref bean="stuServiceImpl"/>
+   </jaxrs:serviceBeans> 
+   <jaxrs:providers> 
+       <bean class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+   </jaxrs:providers>
+</jaxrs:server>
+<bean id="stuServiceImpl" class="com.zcp.webservice.controller.IStuRestImpl"/>
+</beans>
